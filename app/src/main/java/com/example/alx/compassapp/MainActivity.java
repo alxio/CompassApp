@@ -35,17 +35,16 @@ public class MainActivity extends Activity {
         mLongitudePicker.init(mCompassModel, Compass.CoordinateType.LONGITUDE);
 
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-        //defaults to Las Vegas
-        mCompassModel.setCoordinate(sharedPref.getFloat(getString(R.string.latitude), 35.929758f), Compass.CoordinateType.LATITUDE);
-        mCompassModel.setCoordinate(sharedPref.getFloat(getString(R.string.longitude), 35.929758f), Compass.CoordinateType.LONGITUDE);
+        mCompassModel.setDestLatitude(sharedPref.getFloat(getString(R.string.latitude), 30f));
+        mCompassModel.setDestLongitude(sharedPref.getFloat(getString(R.string.longitude), -110f));
     }
 
     @Override
     protected void onDestroy(){
         SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPref.edit();
-        editor.putFloat(getString(R.string.latitude), (float) mCompassModel.getCoordinate(Compass.CoordinateType.LATITUDE));
-        editor.putFloat(getString(R.string.longitude), (float) mCompassModel.getCoordinate(Compass.CoordinateType.LONGITUDE));
+        editor.putFloat(getString(R.string.latitude), (float) mCompassModel.getDestLatitude());
+        editor.putFloat(getString(R.string.longitude), (float) mCompassModel.getDestLongitude());
         editor.commit();
         super.onDestroy();
     }

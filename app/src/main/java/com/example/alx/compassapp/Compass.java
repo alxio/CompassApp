@@ -28,7 +28,7 @@ public class Compass implements LocationListener, SensorEventListener, Coordinat
     private View mNeedleView;
     private View mTargetView;
 
-    private float temp[] = new float[2];
+    private float mTemp[] = new float[2];
 
     private final static int GPS_TIMEOUT = 30000;
     private final static double ACCEPTABLE_SHIFT = Math.toRadians(10);
@@ -62,9 +62,26 @@ public class Compass implements LocationListener, SensorEventListener, Coordinat
         return (float) -Math.toDegrees(getBearing() - mDestBearing);
     }
 
+    public double getDestLatitude() {
+        return mDestLatitude;
+    }
+
+    public void setDestLatitude(double destLatitude) {
+        this.mDestLatitude = destLatitude;
+    }
+
+    public double getDestLongitude() {
+        return mDestLongitude;
+    }
+
+    public void setDestLongitude(double destLongitude) {
+        this.mDestLongitude = destLongitude;
+    }
+
+
     private void update() {
-        Location.distanceBetween(mMyLatitude, mMyLongitude, mDestLatitude, mDestLongitude, temp);
-        mDestBearing = temp[1];
+        Location.distanceBetween(mMyLatitude, mMyLongitude, mDestLatitude, mDestLongitude, mTemp);
+        mDestBearing = mTemp[1];
 
         mNeedleView.setRotation(getNorthRotation());
         mTargetView.setRotation(getTargetRotation());
