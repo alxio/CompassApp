@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">CompassApp</string>
+    <string name="no_gps">No permission for GPS! Using office location.</string>
+    <string name="bad_value">Enter correct value!</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="latitude">Latitude</string>
+    <string name="longitude">Longitude</string>
+</resources>
